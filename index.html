@@ -10,7 +10,26 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            text-align: center;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex: 1;
         }
         .container {
             max-width: 800px;
@@ -18,43 +37,39 @@
             padding: 20px;
             background: white;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         h1 {
             color: #333;
         }
-        .section {
-            margin: 20px 0;
-        }
-        .projects a {
-            display: block;
-            margin: 10px 0;
-            color: #007bff;
-            text-decoration: none;
-        }
-        .contact a {
-            color: #007bff;
-            text-decoration: none;
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Mahmoud Abdel Aziz Yusuf</h1>
-        <p>Data Analyst | Power BI & DAX Expert | Oil & Gas Operations</p>
-        
-        <div class="section projects">
-            <h2>Projects</h2>
-            <a href="#">Power BI Dashboard - Tokyo Olympics Analysis</a>
-            <a href="#">Well Data Extraction & Reporting</a>
-            <a href="#">Real-Time Control Room Dashboard</a>
-            <a href="#">Advanced DAX & Power Query Case Studies</a>
-        </div>
-        
-        <div class="section contact">
-            <h2>Contact</h2>
-            <p>Email: your-email@example.com</p>
-            <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <a href="#about">About Me</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Professional Experience</a>
+        <a href="#services">Offered Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#learning">Learning Material</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact Me</a>
+    </div>
+    
+    <div class="content">
+        <div class="container">
+            <h1>Mahmoud Yusuf</h1>
+            <p>Data Analyst | Operations Analyst</p>
+            <img src="your-image.jpg" alt="Your Image" class="profile-img">
         </div>
     </div>
 </body>
