@@ -28,7 +28,7 @@ $(function () {
             };
 
             // Send email via EmailJS
-            emailjs.send("service_t5ay6cz", "__ejs-test-mail-service__", params)
+            emailjs.send("service_t5ay6cz", "template_6zvy6ko", params)
                 .then(function (response) {
                     console.log("SUCCESS!", response.status, response.text);
 
