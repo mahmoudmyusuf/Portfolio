@@ -1,53 +1,60 @@
-$(function () {
+(function() {
+    emailjs.init("JDdGv6axiaqLAF-50"); // Initialize EmailJS with your Public Key
+})();
 
+$(function () {
     $("#contactForm input, #contactForm textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function ($form, event, errors) {
+            // Handle any errors if needed
         },
         submitSuccess: function ($form, event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent default form submission
+
             var name = $("input#name").val();
             var email = $("input#email").val();
             var subject = $("input#subject").val();
             var message = $("textarea#message").val();
 
-            $this = $("#sendMessageButton");
-            $this.prop("disabled", true);
+            var $this = $("#sendMessageButton");
+            $this.prop("disabled", true); // Disable button to prevent multiple submissions
 
-            $.ajax({
-                url: "contact.php",
-                type: "POST",
-                data: {
-                    name: name,
-                    email: email,
-                    subject: subject,
-                    message: message
-                },
-                cache: false,
-                success: function () {
+            // Prepare EmailJS parameters
+            var params = {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message
+            };
+
+            // Send email via EmailJS
+            emailjs.send("service_t5ay6cz", "__ejs-test-mail-service__", params)
+                .then(function (response) {
+                    console.log("SUCCESS!", response.status, response.text);
+
                     $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                            .append("</button>");
                     $('#success > .alert-success')
-                            .append("<strong>Your message has been sent. </strong>");
-                    $('#success > .alert-success')
-                            .append('</div>');
-                    $('#contactForm').trigger("reset");
-                },
-                error: function () {
+                        .html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>")
+                        .append("<strong>Your message has been sent. </strong>")
+                        .append('</div>');
+
+                    $('#contactForm').trigger("reset"); // Reset form after successful submission
+                }, function (error) {
+                    console.log("FAILED...", error);
+
                     $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                            .append("</button>");
-                    $('#success > .alert-danger').append($("<strong>").text("Sorry " + name + ", it seems that our mail server is not responding. Please try again later!"));
-                    $('#success > .alert-danger').append('</div>');
+                    $('#success > .alert-danger')
+                        .html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>")
+                        .append($("<strong>").text("Sorry " + name + ", there was an error sending your message. Please try again later!"))
+                        .append('</div>');
+
                     $('#contactForm').trigger("reset");
-                },
-                complete: function () {
+                })
+                .finally(function () {
                     setTimeout(function () {
-                        $this.prop("disabled", false);
+                        $this.prop("disabled", false); // Re-enable button after a delay
                     }, 1000);
-                }
-            });
+                });
         },
         filter: function () {
             return $(this).is(":visible");
