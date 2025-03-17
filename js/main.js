@@ -104,37 +104,39 @@
 
     // Portfolio Modal with Link
     $(document).ready(function () {
-        var modal = $('#portfolioModal');
-        var modalImg = $('#modalImage');
-        var modalTitle = $('#modalTitle');
-        var modalDescription = $('#modalDescription');
-        var modalLink = $('#modalLink'); // New link element
+    var modal = $('#portfolioModal');
+    var modalImg = $('#modalImage');
+    var modalTitle = $('#modalTitle');
+    var modalDescription = $('#modalDescription');
+    var modalLink = $('#modalLink'); // Separate link element
 
-        $('.portfolio-btn').click(function () {
-            var modalData = $(this).data('modal'); // Get the data-modal attribute
+    $('.portfolio-btn').click(function () {
+        var modalData = $(this).data('modal'); // Get the data-modal attribute
 
-            // Ensure modalData is parsed properly
-            if (typeof modalData === 'string') {
-                modalData = JSON.parse(modalData);
-            }
+        // Ensure modalData is parsed properly
+        if (typeof modalData === 'string') {
+            modalData = JSON.parse(modalData);
+        }
 
-            if (modalData) {
-                modalImg.attr('src', modalData.image);
-                modalTitle.html(`<a href="${modalData.link}" target="_blank">Click Here 🔗</a>`); // Clickable title with link
-                modalDescription.text(modalData.description);
-                modal.css('display', 'flex');
-            }
-        });
-
-        $('.close').click(function () {
-            modal.css('display', 'none');
-        });
-
-        $(window).click(function (event) {
-            if ($(event.target).is(modal)) {
-                modal.css('display', 'none');
-            }
-        });
+        if (modalData) {
+            modalTitle.text(modalData.title); 
+            modalImg.attr('src', modalData.image);
+            modalDescription.text(modalData.description);
+            modalLink.attr('href', modalData.link).text('More Details Click Here 🔗'); // ✅ Properly setting the link
+            modal.css('display', 'flex');
+        }
     });
+
+    $('.close').click(function () {
+        modal.css('display', 'none');
+    });
+
+    $(window).click(function (event) {
+        if ($(event.target).is(modal)) {
+            modal.css('display', 'none');
+        }
+    });
+});
+
 
 })(jQuery);
