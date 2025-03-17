@@ -1,0 +1,36 @@
+/* Custom styles for copy button */
+.code-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.copy-btn:hover {
+    background-color: #0056b3;
+}
+
+.copy-btn:focus {
+    outline: none;
+}
+
+
+.typed-cursor {
+    font-size: 1em !important;  /* Match text size */
+    line-height: 1 !important;  /* Prevent extra space */
+    vertical-align: middle !important;  /* Align with text */
+  }
+
+  
