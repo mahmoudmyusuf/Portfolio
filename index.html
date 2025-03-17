@@ -29,7 +29,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
-        <a href=""#home" class="navbar-brand ml-lg-3">
+        <a href="#home" class="navbar-brand ml-lg-3">
             <h1 class="m-0 display-5"><span class="text-primary">Mahmoud</span>Yusuf</h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -413,16 +413,17 @@
 <!-- Services End -->
 
 
+
 <!-- Portfolio Modal Structure -->
 <div id="portfolioModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
+        <h2 id="modalTitle"></h2>
         <img id="modalImage" class="modal-img" src="" alt="Project Image">
-        <h2 id="modalTitle"><a id="modalLink" href="#" target="_blank">Click Here 🔗</a></h2>
         <p id="modalDescription">Project description goes here...</p>
+        <a id="modalLink" href="#" target="_blank">Click Here 🔗</a>
     </div>
 </div>
-
 
 <!-- Portfolio Start -->
 <div class="container-fluid pt-5 pb-3" id="portfolio">
@@ -437,51 +438,69 @@
                 <ul class="list-inline mb-4" id="portfolio-flters">
                     <li class="btn btn-sm btn-outline-primary m-1 active" data-filter="*">All</li>
                     <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Data Analytics & Business Insights</li>
-                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Power BI & Data Visualization</li>
-                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Data Processing & Automation</li>
+                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Data Processing & Automation</li>
+                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Searchable & Interactive Tools</li>
                 </ul>
             </div>
         </div>
 
         <div class="row portfolio-container">
 
-            <!-- Portfolio Item 1 -->
-            <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                <div class="position-relative overflow-hidden mb-2">
-                    <img class="img-fluid rounded w-100" src="img/portfolio-1.jpg" alt="Data Analysis Project">
-                    <div class="portfolio-title">Sales Analysis Dashboard</div>
-                    <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center" 
-                         data-modal='{"image": "img/portfolio-1.jpg", "title": "Sales Analysis Dashboard", "description": "A Power BI dashboard analyzing sales trends, revenue, and customer behavior.", "link": "https://example.com/sales-dashboard"}'>
-                        <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
-                    </div>
-                </div>
-            </div>
+             <!-- Portfolio Item Template -->
+            <script>
+                const projects = [
+                    {
+                        image: "projects/img/Superstore Dataset/picture1.png",
+                        title: "Sales Analysis | Superstore Dataset",
+                        description: "A comprehensive Sales Analysis Dashboard in Power BI to provide actionable insights into business performance for Superstore Dataset.",
+                        link: "./projects/Sales-Analysis-Superstore-Dataset.html",
+                        category: "first"
+                    },
+                    {
+                        image: "projects/img/Manufacturing Downtime/picture1.png",
+                        title: "Operation Analysis | Manufacturing Downtime",
+                        description: "An interactive Power BI report visualizing actionable insights into production efficiency and downtime causes.",
+                        link: "./projects/Manufacturing-Downtime.html",
+                        category: "first"
+                    },
+                    {
+                        image: "projects/img/TOKYO OLYMPICS/picture1.png",
+                        title: "Sports Analysis | TOKYO OLYMPICS",
+                        description: "An interactive Power BI report visualizing medal distribution by country, Medal Type, and Medal Combinations.",
+                        link: "./projects/TOKYO-OLYMPICS.html",
+                        category: "first"
+                    },
+                    {
+                        image: "projects/img/Automation Project/picture1.png",
+                        title: "Automation Project | Excel to Power BI",
+                        description: "Automating Excel reports with Power BI for real-time dashboards and improved decision-making.",
+                        link: "./projects/Automation-Project.html",
+                        category: "second"
+                    }
 
-            <!-- Portfolio Item 2 -->
-            <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
-                <div class="position-relative overflow-hidden mb-2">
-                    <img class="img-fluid rounded w-100" src="img/portfolio-2.jpg" alt="Power BI Visualization">
-                    <div class="portfolio-title">Financial Performance Report</div>
-                    <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center" 
-                         data-modal='{"image": "img/portfolio-2.jpg", "title": "Financial Performance Report", "description": "An interactive Power BI report visualizing key financial metrics and profitability.", "link": "https://example.com/financial-report"}'>
-                        <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
-                    </div>
-                </div>
-            </div>
+			<!-- Add Project Here -->
+                ];
+            </script>
 
-            <!-- Portfolio Item 3 -->
-            <div class="col-lg-4 col-md-6 mb-4 portfolio-item third">
-                <div class="position-relative overflow-hidden mb-2">
-                    <img class="img-fluid rounded w-100" src="img/portfolio-3.jpg" alt="Data Automation">
-                    <div class="portfolio-title">Automated Data Processing</div>
-                    <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center" 
-                         data-modal='{"image": "img/portfolio-3.jpg", "title": "Automated Data Processing", "description": "A Python script that automates data cleaning and report generation for business insights.", "link": "https://example.com/data-automation"}'>
-                        <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add More Projects Here -->
+            <div id="portfolio-items"></div>
+            <script>
+                const container = document.getElementById("portfolio-items");
+                projects.forEach((project) => {
+                    const item = document.createElement("div");
+                    item.className = `col-lg-4 col-md-6 mb-4 portfolio-item ${project.category}`;
+                    item.innerHTML = `
+                        <div class="position-relative overflow-hidden mb-2">
+                            <img class="img-fluid rounded w-100" src="${project.image}" alt="${project.title}">
+                            <div class="portfolio-title">${project.title}</div>
+                            <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center" 
+                                data-modal='{"image": "${project.image}", "title": "${project.title}", "description": "${project.description}", "link": "${project.link}"}'>
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
+            </script>
 
         </div>
     </div>
@@ -693,14 +712,16 @@ Well done Eng., Mahmoud and appreciated your effort
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
 
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="project/js/script.js"></script>
+
 </body>
 
 </html>
