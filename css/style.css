@@ -313,7 +313,6 @@ legend {
   white-space: normal;
 }
 
-
 /* Modal Background */
 .modal {
     display: none;
@@ -345,11 +344,11 @@ legend {
 
 /* Modal Image */
 .modal-img {
-    width: 100%;
-    max-width: 600px; /* Limits the image size on wide screens */
-    max-height: 400px; /* Prevents the image from becoming too tall */
-    object-fit: contain;
+    width: auto;
+    max-width: 100%;
+    max-height: 400px;
     border-radius: 5px;
+    display: block;
 }
 
 /* Modal Title */
@@ -393,15 +392,24 @@ legend {
 .portfolio-title {
     position: absolute;
     bottom: 10px;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Ensures enough space for text wrapping */
+    max-width: 95%;
     background: rgba(0, 0, 0, 0.7);
     color: white;
     text-align: center;
     font-size: 18px;
-    padding: 5px;
+    padding: 5px 10px;
     font-weight: bold;
+    border-radius: 5px;
+    white-space: normal; /* Allow text wrapping */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
 }
+
 
 
 
@@ -6379,6 +6387,8 @@ a.close.disabled {
   }
 }
 
+
+
 .spinner-border {
   display: inline-block;
   width: 2rem;
@@ -10077,5 +10087,9 @@ h6,
   padding: 0;
   list-style-type: none;
 }
+
+
+
+
 
 
