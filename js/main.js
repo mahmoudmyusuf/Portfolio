@@ -96,6 +96,16 @@
     });
 
     $(document).ready(function () {
+        // Scroll to section if URL contains a hash (e.g., #testimonial)
+        if (window.location.hash) {
+            var target = $(window.location.hash);
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 45
+                }, 1500, 'easeInOutExpo');
+            }
+        }
+
         // ====== MODAL FUNCTIONALITY ======
         var modal = $('#portfolioModal');
         var modalImg = $('#modalImage');
