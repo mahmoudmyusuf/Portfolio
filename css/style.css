@@ -314,7 +314,6 @@ legend {
 }
 
 
-
 /* Portfolio Image Overlay with Title */
 .portfolio-title {
     position: absolute;
@@ -337,7 +336,6 @@ legend {
     -webkit-box-orient: vertical;
 }
 
-
 /* Modal Background */
 .modal {
     display: none;
@@ -359,10 +357,12 @@ legend {
 .modal-dialog {
     position: relative;
     width: auto;
+    max-width: 800px; /* Limit modal width to 800px */
     margin: 0.5rem;
     pointer-events: none;
 }
 
+/* Modal Dialog Transitions */
 .modal.fade .modal-dialog {
     transition: transform 0.3s ease-out;
     transform: translate(0, -50px);
@@ -391,10 +391,17 @@ legend {
     pointer-events: auto;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    width: auto;
-    max-width: fit-content;
+    max-width: 800px; /* Limit modal width */
     align-items: center;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+    opacity: 1; /* Fully visible by default */
 }
+
+/* Reduce opacity when the user moves the mouse away */
+.modal-content:not(:hover) {
+    opacity: .5; /* Make it semi-transparent */
+}
+
 
 /* Modal Image */
 .modal-img {
@@ -428,8 +435,15 @@ legend {
     right: 20px;
     font-size: 30px;
     cursor: pointer;
-    color: #333;
+    color: red; /* Set the close button to red */
+    transition: color 0.3s ease-in-out; /* Smooth transition effect */
 }
+
+/* Change color on hover */
+.close:hover {
+    color: darkred; /* Slightly darker red on hover */
+}
+
 
 /* Modal Scrollable */
 .modal-dialog-scrollable {
@@ -493,6 +507,7 @@ legend {
     background-color: #000;
     opacity: 0.5;
 }
+
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
