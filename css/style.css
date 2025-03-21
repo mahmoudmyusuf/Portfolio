@@ -399,7 +399,7 @@ legend {
 
 /* Reduce opacity when the user moves the mouse away */
 .modal-content:not(:hover) {
-    opacity: .5; /* Make it semi-transparent */
+    opacity: 1; /* Make it semi-transparent */
 }
 
 
